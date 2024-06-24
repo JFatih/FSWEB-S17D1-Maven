@@ -13,8 +13,17 @@ import java.util.Map;
 public class AnimalController {
     private Map<Integer, Animal> animals = new HashMap<>();
 
+    public AnimalController() {
+        animals.put(1,new Animal(1, "inek"));
+        animals.put(2,new Animal(2, "kedi"));
+        animals.put(3,new Animal(3, "köpek"));
+        animals.put(4,new Animal(4, "keçi"));
+        animals.put(5,new Animal(5, "kaplumbağa"));
+    }
+
     @GetMapping
     public List<Animal> getAnimals(){
+        System.out.println("live");
         return animals.values().stream().toList();
     }
 
@@ -39,6 +48,7 @@ public class AnimalController {
     public Animal deleteAnimal(@PathVariable Integer id){
         Animal deletedAnimal = animals.get(id);
         animals.remove(id);
+        System.out.println("deleted");
         return deletedAnimal;
     }
 
